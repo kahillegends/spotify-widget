@@ -4,25 +4,25 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Spotify Widget</title>
-  <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@300;400;500&family=Geist:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet" />
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
       background: transparent;
-      font-family: 'Geist', sans-serif;
+      font-family: 'DM Sans', sans-serif;
       display: flex;
       align-items: flex-end;
       justify-content: flex-start;
       min-height: 100vh;
-      padding: 24px;
+      padding: 20px;
     }
 
     /* ── CONFIG SCREEN ── */
     #config-screen {
       position: fixed;
       inset: 0;
-      background: #0a0a0a;
+      background: #080808;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -30,85 +30,84 @@
     }
 
     .config-box {
-      width: 420px;
-      padding: 40px;
-      border: 1px solid #222;
-      background: #111;
+      width: 400px;
+      padding: 36px;
+      border: 1px solid #1a1a1a;
+      background: #0e0e0e;
+      border-radius: 4px;
     }
 
     .config-box h1 {
-      font-family: 'Geist Mono', monospace;
-      font-size: 13px;
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
       font-weight: 400;
       color: #1DB954;
-      letter-spacing: 0.15em;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
-      margin-bottom: 32px;
+      margin-bottom: 28px;
     }
 
     .config-box label {
       display: block;
-      font-size: 11px;
+      font-size: 10px;
       font-weight: 400;
-      color: #555;
-      letter-spacing: 0.1em;
+      color: #444;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
 
     .config-box input {
       width: 100%;
-      background: #0a0a0a;
-      border: 1px solid #222;
-      color: #eee;
-      font-family: 'Geist Mono', monospace;
+      background: #080808;
+      border: 1px solid #1e1e1e;
+      color: #ccc;
+      font-family: 'DM Mono', monospace;
       font-size: 12px;
       padding: 10px 12px;
       outline: none;
-      margin-bottom: 20px;
+      margin-bottom: 18px;
+      border-radius: 2px;
       transition: border-color 0.2s;
     }
 
     .config-box input:focus { border-color: #1DB954; }
-
-    .config-box input[readonly] {
-      color: #444;
-      cursor: default;
-    }
+    .config-box input[readonly] { color: #333; cursor: default; }
 
     .config-box button {
       width: 100%;
       background: #1DB954;
       border: none;
       color: #000;
-      font-family: 'Geist Mono', monospace;
-      font-size: 12px;
-      font-weight: 500;
-      letter-spacing: 0.1em;
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
       padding: 12px;
       cursor: pointer;
+      border-radius: 2px;
       transition: opacity 0.2s;
     }
 
-    .config-box button:hover { opacity: 0.85; }
+    .config-box button:hover { opacity: 0.8; }
 
     .config-hint {
-      margin-top: 20px;
-      font-size: 11px;
-      color: #333;
-      line-height: 1.8;
-      font-family: 'Geist Mono', monospace;
+      margin-top: 18px;
+      font-size: 10px;
+      color: #2a2a2a;
+      line-height: 1.9;
+      font-family: 'DM Mono', monospace;
     }
 
-    .config-hint a { color: #555; text-decoration: underline; }
-    .config-hint strong { color: #eee; }
+    .config-hint a { color: #333; text-decoration: underline; }
+    .config-hint strong { color: #555; }
 
     /* ── AUTH SCREEN ── */
     #auth-screen {
       position: fixed;
       inset: 0;
-      background: #0a0a0a;
+      background: #080808;
       display: none;
       align-items: center;
       justify-content: center;
@@ -118,163 +117,214 @@
     .auth-box { text-align: center; }
 
     .auth-box .logo {
-      font-family: 'Geist Mono', monospace;
-      font-size: 11px;
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
       color: #1DB954;
-      letter-spacing: 0.2em;
+      letter-spacing: 0.25em;
       text-transform: uppercase;
-      margin-bottom: 32px;
+      margin-bottom: 28px;
     }
 
     .auth-box button {
       background: transparent;
       border: 1px solid #1DB954;
       color: #1DB954;
-      font-family: 'Geist Mono', monospace;
-      font-size: 11px;
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
       letter-spacing: 0.15em;
       text-transform: uppercase;
-      padding: 12px 32px;
+      padding: 11px 28px;
       cursor: pointer;
+      border-radius: 2px;
       transition: all 0.2s;
     }
 
     .auth-box button:hover { background: #1DB954; color: #000; }
 
     .auth-box .reset {
-      margin-top: 16px;
+      margin-top: 14px;
       display: block;
-      font-family: 'Geist Mono', monospace;
-      font-size: 10px;
-      color: #333;
+      font-family: 'DM Mono', monospace;
+      font-size: 9px;
+      color: #252525;
       cursor: pointer;
       background: none;
       border: none;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
     }
 
-    .auth-box .reset:hover { color: #555; }
+    .auth-box .reset:hover { color: #444; }
 
     /* ── WIDGET ── */
     #widget {
       display: none;
       align-items: center;
-      gap: 14px;
-      background: rgba(10, 10, 10, 0.92);
-      border: 1px solid #1a1a1a;
-      padding: 14px 18px;
-      backdrop-filter: blur(8px);
-      max-width: 360px;
-      animation: fadeIn 0.6s ease forwards;
+      gap: 12px;
+      background: rgba(8, 8, 8, 0.95);
+      border: 1px solid #151515;
+      padding: 10px 14px 10px 10px;
+      border-radius: 6px;
+      width: 300px;
+      animation: fadeUp 0.5s cubic-bezier(0.16,1,0.3,1) forwards;
       position: relative;
       overflow: hidden;
     }
 
-    #widget::before {
-      content: '';
-      position: absolute;
-      left: 0; top: 0; bottom: 0;
-      width: 2px;
-      background: #1DB954;
-      opacity: 0;
-      transition: opacity 0.4s;
-    }
-
-    #widget.playing::before { opacity: 1; }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(8px); }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(10px); }
       to   { opacity: 1; transform: translateY(0); }
     }
 
-    .track-info { flex: 1; min-width: 0; }
+    /* Album art */
+    .album-art {
+      width: 48px;
+      height: 48px;
+      border-radius: 3px;
+      background: #111;
+      flex-shrink: 0;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .album-art img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .album-art .placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #111;
+    }
+
+    .album-art .placeholder svg {
+      width: 20px;
+      height: 20px;
+      opacity: 0.15;
+    }
+
+    /* Track info */
+    .track-info {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
 
     .track-title {
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 500;
-      color: #f0f0f0;
+      color: #e8e8e8;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
       letter-spacing: -0.01em;
+      line-height: 1.2;
     }
 
     .track-artist {
-      font-family: 'Geist Mono', monospace;
       font-size: 10px;
       font-weight: 300;
-      color: #444;
-      letter-spacing: 0.08em;
-      margin-top: 3px;
+      color: #3a3a3a;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      text-transform: uppercase;
+      letter-spacing: 0.02em;
     }
 
-    .status-dot {
-      width: 5px;
-      height: 5px;
-      border-radius: 50%;
+    /* Progress */
+    .progress-wrap {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 5px;
+    }
+
+    .progress-bar {
+      flex: 1;
+      height: 2px;
+      background: #1a1a1a;
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
       background: #1DB954;
+      border-radius: 2px;
+      width: 0%;
+      transition: width 1s linear;
+    }
+
+    #widget.paused .progress-fill {
+      background: #252525;
+      transition: none;
+    }
+
+    .progress-time {
+      font-family: 'DM Mono', monospace;
+      font-size: 8px;
+      color: #252525;
+      letter-spacing: 0.05em;
       flex-shrink: 0;
-      animation: pulse 2s ease infinite;
+      min-width: 30px;
+      text-align: right;
     }
 
-    @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50%       { opacity: 0.3; }
-    }
-
-    .status-dot.paused { background: #333; animation: none; }
-
+    /* Scroll title */
     .track-title.scroll {
-      animation: scroll-text 8s linear infinite;
+      animation: scroll-title 9s linear infinite;
       white-space: nowrap;
       overflow: visible;
       text-overflow: unset;
     }
 
-    @keyframes scroll-text {
+    @keyframes scroll-title {
       0%   { transform: translateX(0); }
-      40%  { transform: translateX(var(--scroll-dist)); }
-      60%  { transform: translateX(var(--scroll-dist)); }
+      35%  { transform: translateX(var(--scroll-dist)); }
+      65%  { transform: translateX(var(--scroll-dist)); }
       100% { transform: translateX(0); }
     }
 
+    /* Nothing playing */
     #nothing-playing {
       display: none;
-      font-family: 'Geist Mono', monospace;
-      font-size: 10px;
-      color: #222;
-      letter-spacing: 0.15em;
+      font-family: 'DM Mono', monospace;
+      font-size: 9px;
+      color: #1a1a1a;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
     }
   </style>
 </head>
 <body>
 
-  <!-- STEP 1 : Config -->
+  <!-- CONFIG -->
   <div id="config-screen">
     <div class="config-box">
       <h1>⬡ Spotify Widget · OBS</h1>
       <label>Client ID Spotify</label>
       <input type="text" id="client-id-input" placeholder="Colle ton Client ID ici..." />
-      <label>Redirect URI (ne pas modifier)</label>
+      <label>Redirect URI</label>
       <input type="text" id="redirect-uri-input" value="https://kahillegends.github.io/spotify-widget/" readonly />
       <button onclick="saveConfig()">Connecter Spotify →</button>
       <p class="config-hint">
-        1. Va sur <a href="https://developer.spotify.com/dashboard" target="_blank">developer.spotify.com/dashboard</a><br/>
+        1. <a href="https://developer.spotify.com/dashboard" target="_blank">developer.spotify.com/dashboard</a><br/>
         2. Crée une app → copie le <strong>Client ID</strong><br/>
-        3. Dans Settings → Redirect URIs, ajoute :<br/>
-        <strong>https://kahillegends.github.io/spotify-widget/</strong><br/>
-        4. Colle le Client ID ci-dessus et clique Connecter
+        3. Settings → Redirect URIs → ajoute l'URL ci-dessus<br/>
+        4. Colle le Client ID et clique Connecter
       </p>
     </div>
   </div>
 
-  <!-- STEP 2 : Auth -->
+  <!-- AUTH -->
   <div id="auth-screen">
     <div class="auth-box">
       <p class="logo">⬡ Spotify Widget</p>
@@ -283,12 +333,24 @@
     </div>
   </div>
 
-  <!-- STEP 3 : Widget -->
+  <!-- WIDGET -->
   <div id="widget">
-    <div class="status-dot" id="dot"></div>
+    <div class="album-art" id="album-art">
+      <div class="placeholder">
+        <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5">
+          <circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/>
+        </svg>
+      </div>
+    </div>
     <div class="track-info">
       <div class="track-title" id="title">—</div>
       <div class="track-artist" id="artist">—</div>
+      <div class="progress-wrap">
+        <div class="progress-bar">
+          <div class="progress-fill" id="progress-fill"></div>
+        </div>
+        <div class="progress-time" id="progress-time">0:00</div>
+      </div>
     </div>
   </div>
 
@@ -301,9 +363,13 @@
   let CLIENT_ID    = localStorage.getItem('sp_client_id')    || '';
   let accessToken  = localStorage.getItem('sp_access_token') || null;
   let refreshToken = localStorage.getItem('sp_refresh_token')|| null;
-  let pollInterval = null;
+  let pollInterval     = null;
+  let progressInterval = null;
 
-  // ── INIT ──
+  let localProgress = 0;
+  let localDuration = 0;
+  let localPlaying  = false;
+
   window.addEventListener('load', async () => {
     const params = new URLSearchParams(window.location.search);
     const code   = params.get('code');
@@ -314,18 +380,11 @@
       return;
     }
 
-    if (accessToken) {
-      showWidget();
-      startPolling();
-    } else if (CLIENT_ID) {
-      show('auth-screen');
-      hide('config-screen');
-    } else {
-      show('config-screen');
-    }
+    if (accessToken) { showWidget(); startPolling(); }
+    else if (CLIENT_ID) { show('auth-screen'); hide('config-screen'); }
+    else { show('config-screen'); }
   });
 
-  // ── CONFIG ──
   function saveConfig() {
     const id = document.getElementById('client-id-input').value.trim();
     if (!id) { alert('Entre ton Client ID Spotify.'); return; }
@@ -335,12 +394,8 @@
     show('auth-screen');
   }
 
-  function resetConfig() {
-    hide('auth-screen');
-    show('config-screen');
-  }
+  function resetConfig() { hide('auth-screen'); show('config-screen'); }
 
-  // ── PKCE ──
   async function generateCodeVerifier() {
     const arr = new Uint8Array(64);
     crypto.getRandomValues(arr);
@@ -354,7 +409,6 @@
       .replace(/\+/g, '-').replace(/\//g, '_').replace(/=/g, '');
   }
 
-  // ── AUTH ──
   async function startAuth() {
     const verifier  = await generateCodeVerifier();
     const challenge = await generateCodeChallenge(verifier);
@@ -367,7 +421,6 @@
     url.searchParams.set('scope',                 SCOPES);
     url.searchParams.set('code_challenge_method', 'S256');
     url.searchParams.set('code_challenge',        challenge);
-
     window.location.href = url.toString();
   }
 
@@ -380,14 +433,12 @@
       client_id:     CLIENT_ID,
       code_verifier: verifier,
     });
-
     const res  = await fetch('https://accounts.spotify.com/api/token', {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       body,
     });
     const data = await res.json();
-
     if (data.access_token) {
       accessToken  = data.access_token;
       refreshToken = data.refresh_token;
@@ -396,7 +447,7 @@
       showWidget();
       startPolling();
     } else {
-      alert('Erreur auth Spotify : ' + JSON.stringify(data));
+      alert('Erreur auth : ' + JSON.stringify(data));
       show('auth-screen');
     }
   }
@@ -426,10 +477,14 @@
     return false;
   }
 
-  // ── POLLING ──
   function startPolling() {
     fetchCurrentTrack();
     pollInterval = setInterval(fetchCurrentTrack, 5000);
+    progressInterval = setInterval(() => {
+      if (!localPlaying) return;
+      localProgress = Math.min(localProgress + 1000, localDuration);
+      renderProgress();
+    }, 1000);
   }
 
   async function fetchCurrentTrack() {
@@ -451,52 +506,76 @@
       const data = await res.json();
       if (!data || !data.item) { setNothingPlaying(); return; }
 
-      updateWidget(data.item.name, data.item.artists.map(a => a.name).join(', '), data.is_playing);
+      localProgress = data.progress_ms       || 0;
+      localDuration = data.item.duration_ms  || 1;
+      localPlaying  = data.is_playing;
 
+      const title  = data.item.name;
+      const artist = data.item.artists.map(a => a.name).join(', ');
+      const imgUrl = data.item.album?.images?.[1]?.url || data.item.album?.images?.[0]?.url || null;
+
+      updateWidget(title, artist, imgUrl, data.is_playing);
     } catch (e) {
       console.error('Spotify fetch error', e);
     }
   }
 
-  // ── UI ──
-  function updateWidget(title, artist, isPlaying) {
+  let lastTitle = '';
+
+  function updateWidget(title, artist, imgUrl, isPlaying) {
     const widget   = document.getElementById('widget');
     const titleEl  = document.getElementById('title');
     const artistEl = document.getElementById('artist');
-    const dot      = document.getElementById('dot');
+    const artEl    = document.getElementById('album-art');
 
-    titleEl.textContent  = title;
-    artistEl.textContent = artist.toUpperCase();
-    dot.className        = 'status-dot' + (isPlaying ? '' : ' paused');
+    if (title !== lastTitle) {
+      titleEl.classList.remove('scroll');
+      titleEl.textContent  = title;
+      artistEl.textContent = artist;
+      lastTitle = title;
 
-    if (isPlaying) widget.classList.add('playing');
-    else widget.classList.remove('playing');
+      artEl.innerHTML = imgUrl
+        ? `<img src="${imgUrl}" alt="cover" />`
+        : `<div class="placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg></div>`;
 
-    titleEl.classList.remove('scroll');
-    requestAnimationFrame(() => {
-      const overflow = titleEl.scrollWidth - titleEl.clientWidth;
-      if (overflow > 10) {
-        titleEl.style.setProperty('--scroll-dist', `-${overflow + 16}px`);
-        titleEl.classList.add('scroll');
-      }
-    });
+      requestAnimationFrame(() => {
+        const overflow = titleEl.scrollWidth - titleEl.clientWidth;
+        if (overflow > 8) {
+          titleEl.style.setProperty('--scroll-dist', `-${overflow + 12}px`);
+          titleEl.classList.add('scroll');
+        }
+      });
+    }
 
+    widget.className = isPlaying ? 'playing' : 'paused';
+    widget.id = 'widget';
+    renderProgress();
     show('widget');
     document.getElementById('nothing-playing').style.display = 'none';
   }
 
+  function renderProgress() {
+    const fill = document.getElementById('progress-fill');
+    const time = document.getElementById('progress-time');
+    const pct  = localDuration > 0 ? (localProgress / localDuration) * 100 : 0;
+    fill.style.width = pct.toFixed(2) + '%';
+    const rem = Math.max(0, localDuration - localProgress);
+    const m   = Math.floor(rem / 60000);
+    const s   = Math.floor((rem % 60000) / 1000);
+    time.textContent = `-${m}:${s.toString().padStart(2, '0')}`;
+  }
+
   function setNothingPlaying() {
+    localPlaying = false;
     hide('widget');
     document.getElementById('nothing-playing').style.display = 'block';
   }
 
-  function showWidget() {
-    hide('config-screen');
-    hide('auth-screen');
-  }
+  function showWidget() { hide('config-screen'); hide('auth-screen'); }
 
   function logout() {
     clearInterval(pollInterval);
+    clearInterval(progressInterval);
     localStorage.removeItem('sp_access_token');
     localStorage.removeItem('sp_refresh_token');
     accessToken = refreshToken = null;
